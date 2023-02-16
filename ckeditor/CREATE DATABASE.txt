@@ -1,0 +1,9 @@
+CREATE DATABASE ckeditor;
+USE ckeditor;
+CREATE TABLE ckeditor 
+(
+	id int AUTO_INCREMENT PRIMARY KEY,
+    min varchar(16384),
+    standard varchar(16384),
+    custom varchar(16384)
+)

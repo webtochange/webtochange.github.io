@@ -1,0 +1,109 @@
+<button id="write">write</button>
+<button id="read">read</button>
+<button id="update">update</button>
+<button id="delete">delete</button>
+
+<p id="select-user"></p>
+<p id="select-msg"></p>
+
+
+<script type="module">
+
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.1/firebase-app.js";
+  
+  const firebaseConfig = {
+    apiKey: "AIzaSyBZpw3N1tPRZh54YIHe3S7i2yq31yOx0Wk",
+    authDomain: "test-a9fc8.firebaseapp.com",
+    projectId: "test-a9fc8",
+    storageBucket: "test-a9fc8.appspot.com",
+    messagingSenderId: "1072050422244",
+    appId: "1:1072050422244:web:1b19748873fd2d288b07f1"
+  };
+
+  
+  const app = initializeApp(firebaseConfig);
+
+  import { getDatabase, ref, set, get, child, update, remove } from "https://www.gstatic.com/firebasejs/9.9.1/firebase-database.js";
+
+  const db = getDatabase();
+
+  // ------------------- Insert Data -------------------
+
+  function InsertData()
+  {
+    set(ref(db, "msg/s"),
+    {
+      user: "x",
+      msg: "z"
+    })
+    .then(()=>
+    {
+      alert("insert date");
+    })
+    .catch((error)=>
+    {
+      alert("unsuccessful, error"+error);
+    });
+  }
+  document.querySelector("#write").addEventListener('click', InsertData);
+
+  // ------------------- Select Data -------------------
+
+  function SelectData()
+  {
+    const dbref = ref(db);
+
+    get(child(dbref,"msg/s")).then((snapshot)=>
+    {
+      if(snapshot.exists()){
+        document.querySelector("#select-user").innerHTML = snapshot.val().user;
+        document.querySelector("#select-msg").innerHTML = snapshot.val().msg;
+      }
+      else{
+        alert("no data found")
+      }
+    })
+    .catch((error)=>
+    {
+      alert("unsuccessful, error"+error);
+    });
+  }
+  document.querySelector("#read").addEventListener('click', SelectData);
+
+  // ------------------- Update Data -------------------
+
+  function UpdateData()
+  {
+    update(ref(db, "msg/s"),
+    {
+      msg: "a"
+    })
+    .then(()=>
+    {
+      alert("update date");
+    })
+    .catch((error)=>
+    {
+      alert("unsuccessful, error"+error);
+    });
+  }
+  document.querySelector("#update").addEventListener('click', UpdateData);
+
+  // ------------------- Delete Data -------------------
+
+  function DeleteData()
+  {
+    remove(ref(db, "msg/s"))
+    .then(()=>
+    {
+      alert("delete date");
+    })
+    .catch((error)=>
+    {
+      alert("unsuccessful, error"+error);
+    });
+  }
+  document.querySelector("#delete").addEventListener('click', DeleteData);
+
+</script>
+

@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="link-to-web" content="https://matetorture.github.io/formularz">
+    
+    <title>Formularz</title>
+
+    <!-- css material -->
+    <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+
+    <!-- link do css -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- link do icon -->
+    <link rel="shortcut icon" href="form.ico" type="image/x-icon">
+
+</head>
+<body>
+
+    <form autocomplete="off">
+        <fieldset>
+            <legend>Kontakt</legend>
+
+            <br>
+            <!-- Imię -->
+            <label class="mdc-text-field mdc-text-field--outlined label-a">
+                <span class="mdc-notched-outline">
+                  <span class="mdc-notched-outline__leading"></span>
+                  <span class="mdc-notched-outline__notch">
+                    <span class="mdc-floating-label" id="my-label-id">Imię</span>
+                  </span>
+                  <span class="mdc-notched-outline__trailing"></span>
+                </span>
+                <input type="text" class="mdc-text-field__input" aria-labelledby="my-label-id" required>
+              </label>
+            
+            <!--Nazwisko -->
+              <label class="mdc-text-field mdc-text-field--outlined label-a">
+                <span class="mdc-notched-outline">
+                  <span class="mdc-notched-outline__leading"></span>
+                  <span class="mdc-notched-outline__notch">
+                    <span class="mdc-floating-label" id="my-label-id2">Nazwisko</span>
+                  </span>
+                  <span class="mdc-notched-outline__trailing"></span>
+                </span>
+                <input type="text" class="mdc-text-field__input" aria-labelledby="my-label-id2" required>
+              </label>
+            <br>
+            <br>
+            <br>
+            <br>
+
+            <!-- Miejscowość występu -->
+            <label class="mdc-text-field mdc-text-field--outlined" id="label-a">
+                <span class="mdc-notched-outline">
+                  <span class="mdc-notched-outline__leading"></span>
+                  <span class="mdc-notched-outline__notch">
+                    <span class="mdc-floating-label" id="my-label-id3">Miejscowość występu</span>
+                  </span>
+                  <span class="mdc-notched-outline__trailing"></span>
+                </span>
+                <input type="text" class="mdc-text-field__input" aria-labelledby="my-label-id3" required>
+              </label>
+            <br>
+            <br>
+
+            <!-- Opis -->
+            <label class="mdc-text-field mdc-text-field--outlined mdc-text-field--textarea mdc-text-field--with-internal-counter">
+                <span class="mdc-notched-outline">
+                  <span class="mdc-notched-outline__leading"></span>
+                  <span class="mdc-notched-outline__notch">
+                    <span class="mdc-floating-label" id="my-label-id4">Opisz imprezę, na której mamy wystąpić</span>
+                  </span>
+                  <span class="mdc-notched-outline__trailing"></span>
+                </span>
+                <span class="mdc-text-field__resizer">
+                  <textarea class="mdc-text-field__input" aria-labelledby="my-label-id4" rows="8" cols="90" maxlength="500"></textarea>
+                  <span class="mdc-text-field-character-counter">0 / 500</span>
+                </span>
+              </label>
+            <br>
+
+            <br>
+
+            <!-- typ -->
+            <div class="mdc-select mdc-select--outlined">
+                <div class="mdc-select__anchor" aria-labelledby="outlined-select-label">
+                  <span class="mdc-notched-outline">
+                    <span class="mdc-notched-outline__leading"></span>
+                    <span class="mdc-notched-outline__notch">
+                      <span id="outlined-select-label" class="mdc-floating-label">Typ imprezy</span>
+                    </span>
+                    <span class="mdc-notched-outline__trailing"></span>
+                  </span>
+                  <span class="mdc-select__selected-text-container">
+                    <span id="demo-selected-text" class="mdc-select__selected-text"></span>
+                  </span>
+                  <span class="mdc-select__dropdown-icon">
+                    <svg
+                        class="mdc-select__dropdown-icon-graphic"
+                        viewBox="7 10 10 5" focusable="false">
+                      <polygon
+                          class="mdc-select__dropdown-icon-inactive"
+                          stroke="none"
+                          fill-rule="evenodd"
+                          points="7 10 12 15 17 10">
+                      </polygon>
+                      <polygon
+                          class="mdc-select__dropdown-icon-active"
+                          stroke="none"
+                          fill-rule="evenodd"
+                          points="7 15 12 10 17 15">
+                      </polygon>
+                    </svg>
+                  </span>
+                </div>
+        
+                <div class="mdc-select__menu mdc-menu mdc-menu-surface mdc-menu-surface--fullwidth">
+                    <ul class="mdc-list" role="listbox" aria-label="Food picker listbox">
+                      <li class="mdc-list-item mdc-list-item--selected" aria-selected="true" data-value="" role="option">
+                        <span class="mdc-list-item__ripple"></span>
+                      </li>
+                      <!-- typ1 wesele -->
+                      <li class="mdc-list-item" aria-selected="false" data-value="grains" role="option">
+                        <span class="mdc-list-item__ripple"></span>
+                        <span class="mdc-list-item__text">
+                          Wesele
+                        </span>
+                      </li>
+                      <!-- typ2 komunia -->
+                      <li class="mdc-list-item" aria-selected="false" data-value="grains" role="option">
+                        <span class="mdc-list-item__ripple"></span>
+                        <span class="mdc-list-item__text">
+                          Komunia
+                        </span>
+                      </li>
+                      <!-- typ3 chrzest -->
+                      <li class="mdc-list-item" aria-selected="false" data-value="fruit" role="option">
+                        <span class="mdc-list-item__ripple"></span>
+                        <span class="mdc-list-item__text">
+                          Chrzest
+                        </span>
+                      </li>
+                    </ul>
+                  </div>
+        
+                </div>
+
+            <br>
+            <br>
+            
+            <!-- tance -->
+            <!-- tak -->
+            <div class="mdc-form-field">
+                <div class="mdc-radio">
+                  <input class="mdc-radio__native-control" type="radio" id="radio-1" name="radios">
+                  <div class="mdc-radio__background">
+                    <div class="mdc-radio__outer-circle"></div>
+                    <div class="mdc-radio__inner-circle"></div>
+                  </div>
+                  <div class="mdc-radio__ripple"></div>
+                </div>
+                <label for="radio-1">Z tańcami</label>
+            </div>
+        
+            <div style="clear: both;"></div>
+            
+            <!-- nie -->
+            <div class="mdc-form-field">
+                <div class="mdc-radio">
+                  <input class="mdc-radio__native-control" type="radio" id="radio-2" name="radios" checked>
+                  <div class="mdc-radio__background">
+                    <div class="mdc-radio__outer-circle"></div>
+                    <div class="mdc-radio__inner-circle"></div>
+                  </div>
+                  <div class="mdc-radio__ripple"></div>
+                </div>
+                <label for="radio-1">Bez tańcow</label>
+            </div>
+
+            <br>
+            <br>
+            <br>
+
+            <!-- dodatki -->
+            <label>Elementy dodatkowe:</label>
+            <br>
+            <!-- dodatek 1 -->
+            <div class="mdc-form-field">
+                <div class="mdc-checkbox">
+                    <input type="checkbox"
+                        class="mdc-checkbox__native-control"
+                        id="checkbox-1"/>
+                    <div class="mdc-checkbox__background">
+                        <svg class="mdc-checkbox__checkmark"
+                                viewBox="0 0 24 24">
+                            <path class="mdc-checkbox__checkmark-path"
+                                fill="none"
+                                d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
+                        </svg>
+                        <div class="mdc-checkbox__mixedmark"></div>
+                    </div>
+                    <div class="mdc-checkbox__ripple"></div>
+                </div>
+                <label for="checkbox-1">Stroje góralskie</label>
+              </div>
+        
+              <div style="clear: both;"></div>
+              <!-- dodatek 2 -->
+              <div class="mdc-form-field">
+                <div class="mdc-checkbox">
+                    <input type="checkbox"
+                        class="mdc-checkbox__native-control"
+                        id="checkbox-2"/>
+                    <div class="mdc-checkbox__background">
+                        <svg class="mdc-checkbox__checkmark"
+                                viewBox="0 0 24 24">
+                            <path class="mdc-checkbox__checkmark-path"
+                                fill="none"
+                                d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
+                        </svg>
+                        <div class="mdc-checkbox__mixedmark"></div>
+                    </div>
+                    <div class="mdc-checkbox__ripple"></div>
+                </div>
+                <label for="checkbox-1">Opowiadanie kawałów</label>
+              </div>
+        
+              <div style="clear: both;"></div>
+              <!-- dodatek 3 -->
+              <div class="mdc-form-field">
+                <div class="mdc-checkbox">
+                    <input type="checkbox"
+                        class="mdc-checkbox__native-control"
+                        id="checkbox-3"/>
+                    <div class="mdc-checkbox__background">
+                        <svg class="mdc-checkbox__checkmark"
+                                viewBox="0 0 24 24">
+                            <path class="mdc-checkbox__checkmark-path"
+                                fill="none"
+                                d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
+                        </svg>
+                        <div class="mdc-checkbox__mixedmark"></div>
+                    </div>
+                    <div class="mdc-checkbox__ripple"></div>
+                </div>
+                <label for="checkbox-1">Piosenki solo</label>
+              </div>
+        
+              <div style="clear: both;"></div>
+              <!-- dodatek 4 -->
+              <div class="mdc-form-field">
+                <div class="mdc-checkbox">
+                    <input type="checkbox"
+                        class="mdc-checkbox__native-control"
+                        id="checkbox-4"/>
+                    <div class="mdc-checkbox__background">
+                        <svg class="mdc-checkbox__checkmark"
+                                viewBox="0 0 24 24">
+                            <path class="mdc-checkbox__checkmark-path"
+                                fill="none"
+                                d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
+                        </svg>
+                        <div class="mdc-checkbox__mixedmark"></div>
+                    </div>
+                    <div class="mdc-checkbox__ripple"></div>
+                </div>
+                <label for="checkbox-1">Taniec juhasa</label>
+              </div>
+        
+              <div style="clear: both;"></div>
+              <!-- dodatek 5 -->
+              <div class="mdc-form-field">
+                <div class="mdc-checkbox">
+                    <input type="checkbox"
+                        class="mdc-checkbox__native-control"
+                        id="checkbox-5"/>
+                    <div class="mdc-checkbox__background">
+                        <svg class="mdc-checkbox__checkmark"
+                                viewBox="0 0 24 24">
+                            <path class="mdc-checkbox__checkmark-path"
+                                fill="none"
+                                d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
+                        </svg>
+                        <div class="mdc-checkbox__mixedmark"></div>
+                    </div>
+                    <div class="mdc-checkbox__ripple"></div>
+                </div>
+                <label for="checkbox-1">Taniec z ciupagą</label>
+              </div>
+        
+              <div style="clear: both;"></div>
+              <!-- dodatek 6 -->
+              <div class="mdc-form-field">
+                <div class="mdc-checkbox">
+                    <input type="checkbox"
+                        class="mdc-checkbox__native-control"
+                        id="checkbox-6"/>
+                    <div class="mdc-checkbox__background">
+                        <svg class="mdc-checkbox__checkmark"
+                                viewBox="0 0 24 24">
+                            <path class="mdc-checkbox__checkmark-path"
+                                fill="none"
+                                d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
+                        </svg>
+                        <div class="mdc-checkbox__mixedmark"></div>
+                    </div>
+                    <div class="mdc-checkbox__ripple"></div>
+                </div>
+                <label for="checkbox-1">Poczęstunek góralski</label>
+              </div>
+            <br>
+            <br>
+            <br>
+
+            <!-- nr tel -->
+            <label class="mdc-text-field mdc-text-field--outlined">
+                <span class="mdc-notched-outline">
+                  <span class="mdc-notched-outline__leading"></span>
+                  <span class="mdc-notched-outline__notch">
+                    <span class="mdc-floating-label" id="my-label-id5">Nr. telefonu</span>
+                  </span>
+                  <span class="mdc-notched-outline__trailing"></span>
+                </span>
+                <input class="mdc-text-field__input" type="text" aria-labelledby="my-label-id5" maxlength="9" required>
+                <div class="mdc-text-field-character-counter">0 / 9</div>
+              </label>
+              <br>
+              <br>
+              <p>*  Wymagane</p>
+
+              <!-- submit -->
+            <button class="mdc-button mdc-button--outlined" type="submit" id="submit">
+                <span class="mdc-button__ripple"></span>
+                <span class="mdc-button__label">Wyślij formularz</span>
+            </button>
+
+            <!-- reset -->
+            <button class="mdc-button mdc-button--outlined" type="reset" id="reset">
+                <span class="mdc-button__ripple"></span>
+                <span class="mdc-button__label">Wyczyść dane</span>
+            </button>
+        </fieldset>
+    </form>
+
+
+      
+
+    <!-- script material -->
+    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+    <script>
+
+        // przesowanie napisów do góry
+        const textFieldElements = [].slice.call(document.querySelectorAll('.mdc-text-field'));
+        textFieldElements.forEach((textFieldEl) => {
+            mdc.textField.MDCTextField.attachTo(textFieldEl);
+        });
+
+        // rozwijane wybieranie
+        const select = mdc.select.MDCSelect.attachTo(document.querySelector('.mdc-select'));
+      </script>
+</body>
+</html>
