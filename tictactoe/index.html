@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <h1>Tic Tac Toe</h1>
+
+    <menu>
+        <button id="createGame">CREATE GAME</button>
+        <br><br>OR<br><br>
+        <input type="text" id="joinCode">
+        <button id="joinGame">JOIN</button>
+    </menu>
+
+    <div id="code">
+        <span id="gameCode"></span><span id="copy"></span>
+    </div>
+
+    <div id="game">
+        <span id="turn">Turn</span>
+        <table id="board">
+            <tr>
+                <td class="empty"></td>
+                <td class="empty"></td>
+                <td class="empty"></td>
+            </tr>
+            <tr>
+                <td class="empty"></td>
+                <td class="empty"></td>
+                <td class="empty"></td>
+            </tr>
+            <tr>
+                <td class="empty"></td>
+                <td class="empty"></td>
+                <td class="empty"></td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="resultInfo"></div>
+
+
+    <script type="module">
+
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+        
+        const firebaseConfig = {
+          apiKey: "AIzaSyBkh76XSglmvjtSp8AXDRmG0qVlwGdsgaY",
+          authDomain: "tictactoe-game-29ef6.firebaseapp.com",
+          projectId: "tictactoe-game-29ef6",
+          storageBucket: "tictactoe-game-29ef6.appspot.com",
+          messagingSenderId: "1010394594203",
+          appId: "1:1010394594203:web:85b5acaeb6ea01482aff3e"
+        };
+      
+        
+        const app = initializeApp(firebaseConfig);
+      
+        import { getDatabase, ref, set, get, update, onValue, push } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js";
+      
+        const database = getDatabase();
+
+        function createGame(){
+            const gameCode = generateGameCode();
+
+            //todo - codes cannot be repeated
+
+            const gameRef = push(ref(database, "/games"));
+            const gameId = gameRef.key;
+
+            set(gameRef, {
+                gameCode,
+                started: false,
+                board: [0,0,0,0,0,0,0,0,0],
+                turn: 0,
+                result: "",
+            });
+
+            return { gameId, gameCode };
+        }
+
+        function joinGame(gameCode) {
+            const gamesRef = ref(database, "/games");
+
+            return get(gamesRef).then((snapshot) => {
+
+                return new Promise((resolve, reject) => {
+                    //Timeout for 5 seconds (Checks if timeout connection)
+                    const timeout = setTimeout(() => {
+                        reject(new Error("Timeout."));
+                    }, 5000);
+
+                    get(gamesRef).then((snapshot) => {
+                        clearTimeout(timeout); //Removal of timeout if the data was downloaded before the time expired
+                        const games = snapshot.val();
+
+                        if (games) {
+                        let gameId = null;
+                        Object.keys(games).forEach((key) => {
+                            const game = games[key];
+                            if (game.gameCode === gameCode && !game.started) {
+                                gameId = key;
+                            }
+                        });
+                            resolve(gameId);
+                        } else {
+                            resolve(null);
+                        }
+                    })
+                    .catch((error) => {
+                        clearTimeout(timeout); //Removal of timeout in case of error
+                        reject(error);
+                    });
+                });
+            });
+        }
+
+        function initGame(gameId, player) {
+            const gameRef = ref(database, `/games/${gameId}`);
+
+            refHTML.game.style.display = "block";
+
+            let rows = Array.from(refHTML.board.getElementsByTagName('td'));
+
+            if(player){
+                update(gameRef, {
+                    started: true
+                });
+            }
+
+
+            rows.forEach((row, index) => {
+                row.classList.remove("empty");
+
+                //Listening for a click in the field
+                row.addEventListener('click', () => {
+
+                    get(gameRef).then((snapshot) => {
+                        const value = snapshot.val();
+
+                        if(value.turn == player){
+
+                            let board = value.board;
+    
+                            if(board[index]!='X' && board[index]!='O'){
+                                if(!player){
+                                    board[index]='O';
+                                }else{
+                                    board[index]='X';
+                                }
+                                update(gameRef, {
+                                    board: board,
+                                    turn: !player
+                                });
+                            }
+                        }
+
+                    });
+                });
+            });
+
+            //Listening for changes in the database for a this game
+            onValue(gameRef, (snapshot) => {
+                const gameData = snapshot.val();
+
+                get(gameRef).then((snapshot) => {
+
+                    const value = snapshot.val();
+
+                    let board = value.board;
+
+                    if(value.turn == player){
+                        refHTML.turn.innerHTML = 'Your turn';
+                    }else{
+                        refHTML.turn.innerHTML = 'Waiting for the second player';
+                    }
+
+                    rows.forEach((row, index) => {
+                        if(board[index] == 0){
+                            row.innerHTML = "";
+                        }else{
+                            row.innerHTML = board[index];
+                        }
+                    });
+
+                }).then(()=> {
+
+                    //Display on the board
+                    if(gameData.turn == player){
+                        rows.forEach((row) => {
+                            if(row.innerHTML!='X' && row.innerHTML!='O'){
+                                row.classList.add("empty");
+                            }
+                        });
+                    }else{
+                        rows.forEach((row) => {
+                            if(row.innerHTML!='X' && row.innerHTML!='O'){
+                                row.classList.remove("empty");
+                            }
+                        });
+                    }
+                    checkWinner(gameData.board, player, gameRef); 
+                });
+            });
+        }
+
+        function checkWinner(board, player, gameRef) {
+
+            let draw = true
+            board.forEach((e) => {
+                if(e != 'X' && e != 'O'){
+                    draw = false;
+                }
+            });
+            if(draw){
+                update(gameRef, {
+                    result: "draw"
+                }).then(()=> {
+                    resultInfo.innerHTML = 'Draw <br><img onClick="window.location.reload();" style="cursor: pointer" src="img/refresh.svg" alt="refresh">';
+                    resultInfo.style.display = "block";
+                });
+            }
+
+            let result;
+            if(board[0] == board[1] && board[1] == board[2] && board[2] != 0){
+                result = board[0];
+            }else if(board[3] == board[4] && board[4] == board[5] && board[5] != 0){
+                result = board[3];
+            }else if(board[6] == board[7] && board[7] == board[8] && board[8] != 0){
+                result = board[6];
+            }else if(board[0] == board[3] && board[3] == board[6] && board[6] != 0){
+                result = board[0];
+            }else if(board[1] == board[4] && board[4] == board[7] && board[7] != 0){
+                result = board[1];
+            }else if(board[2] == board[5] && board[5] == board[8] && board[8] != 0){
+                result = board[2];
+            }else if(board[0] == board[4] && board[4] == board[8] && board[8] != 0){
+                result = board[0];
+            }else if(board[2] == board[4] && board[4] == board[6] && board[6] != 0){
+                result = board[2];
+            }
+            if(result){
+                update(gameRef, {
+                    result: result
+                }).then(()=> {
+                    let win;
+                    if(result == 'O'){
+                        win = 0;
+                    }else{
+                        win = 1;
+                    }
+                    if(win == player){
+                        resultInfo.innerHTML = 'You won! <br><img onClick="window.location.reload();" style="cursor: pointer" src="img/refresh.svg" alt="refresh">';
+                    }else{
+                        resultInfo.innerHTML = 'You lost :( <br><img onClick="window.location.reload();" style="cursor: pointer" src="img/refresh.svg" alt="refresh">';
+                    }
+                    resultInfo.style.display = "block";
+                });
+            }
+        }
+
+        function generateGameCode() {
+            const characters = "0123456789";
+            let code = "";
+            for (let i = 0; i < 4; i++) {
+                const randomIndex = Math.floor(Math.random() * characters.length);
+                code += characters.charAt(randomIndex);
+            }
+
+            return code;
+        }
+        const refHTML = {
+            menu: document.querySelector('menu'),
+            joinCode: document.querySelector('#joinCode'),
+            joinGame: document.querySelector('#joinGame'),
+            createGame: document.querySelector('#createGame'),
+            gameCode: document.querySelector('#gameCode'),
+            copy: document.querySelector('#copy'),
+            game: document.querySelector('#game'),
+            board: document.querySelector('#board'),
+            turn: document.querySelector('#turn'),
+            resultInfo: document.querySelector('#resultInfo')
+        }
+
+        refHTML.createGame.addEventListener('click', ()=>{
+            const { gameId, gameCode } = createGame();
+
+            refHTML.gameCode.innerHTML = `Code: <span id="codeColor">${gameCode}<span> `;
+            refHTML.copy.innerHTML = `<img src="img/copy.svg" alt="copy">`;
+            refHTML.copy.addEventListener('click', () => {
+                navigator.clipboard.writeText(gameCode);
+                refHTML.copy.title = "Copied";
+            });
+            refHTML.menu.style.display = "none";
+
+            initGame(gameId, 0);
+        });
+
+        refHTML.joinGame.addEventListener('click', ()=>{
+            let joinedGame = joinGame(refHTML.joinCode.value);
+            joinedGame.then(function(result) {
+                if (result) {
+                    console.log("Join!");
+                    refHTML.menu.style.display = "none";
+                    initGame(result, 1);
+                } else {
+                    console.log("Unable to join the game.");
+                }
+            });
+        });
+      
+      </script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+:root{
+    --bg: #3d3d3d;
+    --font: #d3d3d3;
+    --primary: rgb(221, 255, 70);
+    --secoundary: rgb(195, 224, 65);
+}
+body{
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--bg);
+    color: var(--font);
+}
+h1{
+    padding-top: 3vh;
+    text-align: center;
+    font-size: 50px;
+}
+menu{
+    margin-top: 20vh;
+    text-align: center;
+}
+table{
+    font-size: 80px;
+    margin: auto;
+}
+table, td {
+    border: 2px solid black;
+    border-collapse: collapse;
+}
+td{
+    width: 100px;
+    height: 100px;
+}
+.empty:hover{
+    background-color: var(--primary);
+    cursor: pointer;
+}
+#game{
+    padding-top: 10vh;
+    display: none;
+    margin: auto;
+    text-align: center;
+}
+#code{
+    text-align: center;
+    padding-top: 1vh;
+    font-size: 20px;
+}
+#codeColor{
+    color: var(--primary);
+}
+#joinCode{
+    border: none;
+    border-bottom: 3px solid var(--primary);
+    font-size: 20px;
+    width: 70px;
+    text-align: center;
+    background-color: var(--bg);
+    color: var(--font);
+}
+#joinCode:focus{
+    outline: none;
+    border-bottom: 3px solid var(--secoundary);
+}
+button{
+    margin: 10px;
+    padding: 10px;
+    font-size: 20px;
+    border: 3px solid var(--primary);
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: var(--bg);
+    color: var(--font);
+}
+button:hover{
+    border: 3px solid var(--secoundary);
+}
+#copy img{
+    top: 7px;
+    position: relative;
+    width: 30px;
+    cursor: pointer;
+}
+#resultInfo{
+    background-color: var(--bg);
+    border: #4f4f4f solid 3px;
+    position: fixed;
+    width: 20vw;
+    height: 12vh;
+    top: 30vh;
+    left: 25vw;
+    text-align: center;
+    padding: 14vw;
+    font-size: 35px;
+    opacity: 0.8;
+    display: none;
+}
