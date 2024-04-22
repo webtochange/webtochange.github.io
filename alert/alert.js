@@ -1,3 +1,13 @@
+//==================================================
+//            _      _                 _   
+//           / \    | |   ___   _ __  | |_ 
+//          / _ \   | |  / _ \ | '__| | __|
+//         / ___ \  | | |  __/ | |    | |_ 
+//        /_/   \_\ |_|  \___| |_|     \__|
+//
+// https://github.com/Matetorture/Alerts-JavaScript
+//==================================================
+
 const css = `
 #alert-container{
     position: fixed;
@@ -10,7 +20,7 @@ const css = `
     display: flex;
 }
 .alert-window{
-    padding: 30px 70px 30px 30px;
+    padding: 30px 130px 30px 30px;
     border-radius: 10px;
     position: relative;
     opacity: 1;
