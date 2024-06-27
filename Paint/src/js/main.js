@@ -171,7 +171,6 @@ const createListOfPaintings = (paintingList) => {
             let scale = canvas.height/img.height - 0.4;
 
             ctx.drawImage(img, canvas.width/2 - img.width * scale/2, canvas.height/2 - img.height * scale/2, img.width * scale, img.height * scale);
-            console.log(img, canvas.width/2 - img.width * scale/2, canvas.height/2 - img.height * scale/2, img.width * scale, img.height * scale,);
 
             document.querySelector("#loading-drawings").style.display = "none";
         });
