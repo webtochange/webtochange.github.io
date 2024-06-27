@@ -39,8 +39,8 @@ canvas.addEventListener("mouseup", () => {
 // ? Mobile
 canvas.addEventListener("touchstart", (e) => {
     const touch = e.touches[0];
-    x = touch.offsetX;
-    y = touch.offsetY;
+    x = touch.clientX;
+    y = touch.clientY;
     isDrawing = true;
     e.preventDefault();
 });
@@ -49,12 +49,12 @@ canvas.addEventListener("touchmove", (e) => {
         const touch = e.touches[0];
         ctx.beginPath();
         ctx.moveTo(x, y);
-        ctx.lineTo(touch.offsetX, touch.offsetY);
+        ctx.lineTo(touch.clientX, touch.clientY);
         ctx.strokeStyle = brushColor;
         ctx.lineWidth = brushSize;
         ctx.stroke();
-        x = touch.offsetX;
-        y = touch.offsetY;
+        x = touch.clientX;
+        y = touch.clientY;
     }
     e.preventDefault();
 });
