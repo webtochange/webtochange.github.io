@@ -14,13 +14,12 @@ resizeCanvas = () => {
 window.addEventListener("resize", resizeCanvas);
 resizeCanvas();
 
-
+// ? PC
 canvas.addEventListener("mousedown", (e) => {
     x = e.offsetX;
     y = e.offsetY;
     isDrawing = true;
 });
-
 canvas.addEventListener("mousemove", (e) => {
     if (isDrawing) {
         ctx.beginPath();
@@ -33,11 +32,35 @@ canvas.addEventListener("mousemove", (e) => {
         y = e.offsetY;
     }
 });
-
 canvas.addEventListener("mouseup", () => {
     isDrawing = false;
 });
 
+// ? Mobile
+canvas.addEventListener("touchstart", (e) => {
+    const touch = e.touches[0];
+    x = touch.offsetX;
+    y = touch.offsetY;
+    isDrawing = true;
+    e.preventDefault();
+});
+canvas.addEventListener("touchmove", (e) => {
+    if (isDrawing) {
+        const touch = e.touches[0];
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+        ctx.lineTo(touch.offsetX, touch.offsetY);
+        ctx.strokeStyle = brushColor;
+        ctx.lineWidth = brushSize;
+        ctx.stroke();
+        x = touch.offsetX;
+        y = touch.offsetY;
+    }
+    e.preventDefault();
+});
+canvas.addEventListener("touchend", () => {
+    isDrawing = false;
+});
 
 // ! COLORS
 
@@ -145,9 +168,10 @@ const createListOfPaintings = (paintingList) => {
             const img = new Image();
             img.src = painting.attributes[0].nodeValue;
 
-            let scale = canvas.height/img.height - 0.1;
+            let scale = canvas.height/img.height - 0.4;
 
-            ctx.drawImage(img, 0, 0, img.width * scale, img.height * scale);
+            ctx.drawImage(img, canvas.width/2 - img.width * scale/2, canvas.height/2 - img.height * scale/2, img.width * scale, img.height * scale);
+            console.log(img, canvas.width/2 - img.width * scale/2, canvas.height/2 - img.height * scale/2, img.width * scale, img.height * scale,);
 
             document.querySelector("#loading-drawings").style.display = "none";
         });
