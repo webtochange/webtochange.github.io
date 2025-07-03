@@ -1,0 +1,31 @@
+{
+    "text": "BIP BOP. Do you want to insert your coin into the vending machine?",
+    "responses": [
+        {
+            "text": "*INSERT COIN*",
+            "effect": [{
+                "execute": "item",
+                "id": 3
+            },
+            {
+                "execute": "removeItem",
+                "id": 2
+            },
+            {
+                "execute": "changeActorEffect",
+                "id": 3,
+                "effect": [{
+                    "execute": "dialog",
+                    "id": 12
+                }]
+            }],
+            "requirement": [{
+                "execute": "hasItem",
+                "id": 2
+            }]
+        },
+        {
+            "text": "..."
+        }
+    ]
+}

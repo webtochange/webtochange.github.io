@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>JSON Position Converter</title>
+    <link rel="stylesheet" href="../src/css/main.css" />
+    <link rel="stylesheet" href="../src/css/json_converter.css" />
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>JSON Position Converter</h1>
+            <p>Convert positions and dimensions of objects using the specified tile size</p>
+        </div>
+
+        <div class="controls">
+            <div class="tile-input-group">
+                <label for="tileSize">Tile Size:</label>
+                <input type="number" id="tileSize" class="tile-input" value="2" min="1" />
+            </div>
+            <button class="convert-btn" onclick="convertJSON()">
+                <span>🔄</span> Convert JSON
+            </button>
+        </div>
+
+        <div class="stats" id="stats" style="display: none;">
+            <div class="stat">
+                <div class="stat-number" id="objectCount">0</div>
+                <div class="stat-label">Objects</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number" id="tileValue">32</div>
+                <div class="stat-label">Tile Size</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number" id="conversionTime">0ms</div>
+                <div class="stat-label">Conversion Time</div>
+            </div>
+        </div>
+
+        <div class="json-panels">
+            <div class="panel">
+                <h3>
+                    <span class="icon">📥</span>
+                    Input JSON
+                </h3>
+                <textarea
+                    id="inputJSON"
+                    class="json-textarea"
+                    placeholder="Paste your JSON here..."
+                ></textarea>
+                <div id="inputMessage"></div>
+            </div>
+
+            <div class="panel">
+                <h3>
+                    <span class="icon">📤</span>
+                    Output JSON
+                </h3>
+                <textarea
+                    id="outputJSON"
+                    class="json-textarea"
+                    readonly
+                    placeholder="Converted JSON will appear here..."
+                ></textarea>
+                <button class="copy-btn" onclick="copyToClipboard()">📋 Copy JSON</button>
+                <div id="outputMessage"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../src/js/json_converter.js"></script>
+    <script src="../src/js/back.js"></script>
+</body>
+</html>

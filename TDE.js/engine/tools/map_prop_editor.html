@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map Prop Editor</title>
+    <link rel="stylesheet" href="../src/css/main.css">
+    <link rel="stylesheet" href="../src/css/map_prop_editor.css">
+</head>
+<body>
+    <div class="container">
+        <div class="main-content">
+            <div class="header">
+                <h1>Map Prop Editor</h1>
+                <p>Upload a map and place props with precision</p>
+            </div>
+
+            <div class="instructions">
+                <h4>How to use:</h4>
+                <ul>
+                    <li>Upload a PNG map file to get started</li>
+                    <li>Add props by uploading PNG files</li>
+                    <li>Drag props on the map or use arrow keys to position them</li>
+                    <li>Click on props in the list to select and highlight them</li>
+                    <li>Export your configuration as JSON when finished</li>
+                </ul>
+            </div>
+
+            <div class="file-input-group">
+                <label for="mapInput">Upload Map (PNG file):</label>
+                <input type="file" id="mapInput" class="file-input" accept="image/png" />
+            </div>
+
+            <div class="file-input-group">
+                <label for="addPropInput">Add Prop (PNG file):</label>
+                <input type="file" id="addPropInput" class="file-input" accept="image/png" />
+            </div>
+
+            <div class="status-bar">
+                <span id="mapStatus">No map loaded</span>
+                <span id="propCount">0 props</span>
+            </div>
+
+            <div class="canvas-container">
+                <canvas id="mapCanvas" width="800" height="600"></canvas>
+            </div>
+        </div>
+
+        <div class="sidebar">
+            <div class="zoom-controls">
+                <h3>Canvas Zoom</h3>
+                <div class="zoom-buttons">
+                    <button class="zoom-btn" id="zoomCanvasMinusMinus">--</button>
+                    <button class="zoom-btn" id="zoomCanvasMinus">-</button>
+                    <span class="zoom-value" id="zoomValue">1.0</span>
+                    <button class="zoom-btn" id="zoomCanvasPlus">+</button>
+                    <button class="zoom-btn" id="zoomCanvasPlusPlus">++</button>
+                </div>
+            </div>
+
+            <div class="prop-list-section">
+                <h3>Props <span class="prop-count" id="propCountBadge">0</span></h3>
+                <div class="prop-list" id="propList">
+                    <div class="empty-state">
+                        <h3>No props added yet</h3>
+                        <p>Upload a prop file to get started</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button class="action-btn" id="exportButton">📄 Export JSON</button>
+                <button class="action-btn secondary" id="downloadMapButton">💾 Download Map</button>
+                <button class="action-btn secondary" id="deselectPropButton">🎯 Deselect Prop</button>
+                <button class="action-btn secondary" id="copyJsonButton">📋 Copy JSON</button>
+                <button class="action-btn danger" id="resetIdButton">🔄 Reset IDs</button>
+            </div>
+
+            <div class="json-output" id="jsonOutput"></div>
+        </div>
+    </div>
+
+    <script src="../src/js/map_prop_editor.js"></script>
+    <script src="../src/js/back.js"></script>
+</body>
+</html>
+

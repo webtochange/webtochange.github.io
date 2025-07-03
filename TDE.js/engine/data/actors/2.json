@@ -1,0 +1,23 @@
+{
+    "id": 2,
+    "name": "Lazybones Larry",
+    "color": "#ff5733",
+    "position": { "x": 150, "y": 400 },
+    "width": 75,
+    "height": 80,
+    "animations": {
+        "idle": {
+            "speed": 0.3,
+            "frames": [
+                "./assets/images/actors/1/0.png",
+                "./assets/images/actors/1/1.png",
+                "./assets/images/actors/1/2.png"
+            ]
+        }
+    },
+    "effect": [{
+        "execute": "dialog",
+        "id": 1
+    }],
+    "state": "active" 
+}

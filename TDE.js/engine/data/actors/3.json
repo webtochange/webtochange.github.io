@@ -1,0 +1,21 @@
+{
+    "id": 3,
+    "name": "Vending Machine",
+    "color": "#33ffb5",
+    "position": { "x": 700, "y": 60 },
+    "width": 64,
+    "height": 128,
+    "animations": {
+        "idle": {
+            "speed": 1,
+            "frames": [
+                "./assets/images/actors/2/0.png"
+            ]
+        }
+    },
+    "effect": [{
+        "execute": "dialog",
+        "id": 8
+    }],
+    "state": "active" 
+}

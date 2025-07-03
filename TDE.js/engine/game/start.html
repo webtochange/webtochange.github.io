@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Game Start Screen</title>
+  <link rel="shortcut icon" href="../assets/images/favicon/favicon.png" type="image/x-icon">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap');
+
+    * {
+        font-family: 'Silkscreen', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #111;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .start-screen {
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+      color: #f0f0f0;
+    }
+
+    p {
+      font-size: 16px;
+      margin-bottom: 40px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      align-items: center;
+    }
+
+    .btn {
+      background-color: #f0f0f0;
+      color: #111;
+      padding: 10px 30px;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: scale(1.1);
+      background-color: #cecece;
+    }
+  </style>
+</head>
+<body>
+  <div class="start-screen">
+    <h1>arrow game</h1>
+    <p>Press new game to begin your adventure!</p>
+    <div class="buttons" id="buttons-container">
+      <button class="btn" id="newGameBtn">New Game</button>
+      <button class="btn" onclick="showInstructions()">Instructions</button>
+    </div>
+  </div>
+
+  <script>
+    function getCookie(name) {
+      const cookies = document.cookie.split("; ").reduce((acc, cookieStr) => {
+        const [cName, cValue] = cookieStr.split("=");
+        acc[cName] = decodeURIComponent(cValue);
+        return acc;
+      }, {});
+      return cookies[name] || null;
+    }
+
+    function startGame() {
+      window.location.href = "./";
+    }
+
+    function showInstructions() {
+      alert("Instructions");
+    }
+
+    function setLoadMode() {
+      document.cookie = "mode=load; path=/; max-age=31536000";
+      startGame();
+    }
+
+    function clearLoadMode() {
+      document.cookie = "mode=; path=/; max-age=0";
+      startGame();
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const buttonsContainer = document.getElementById('buttons-container');
+
+      const newGameBtn = document.getElementById('newGameBtn');
+      newGameBtn.onclick = clearLoadMode;
+
+      if (getCookie('gameSave')) {
+        const continueBtn = document.createElement('button');
+        continueBtn.className = 'btn';
+        continueBtn.textContent = 'Continue';
+        continueBtn.onclick = setLoadMode;
+
+        buttonsContainer.insertBefore(continueBtn, newGameBtn.nextSibling);
+      }
+    });
+  </script>
+</body>
+</html>

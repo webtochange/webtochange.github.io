@@ -1,0 +1,38 @@
+{
+    "id": 5,
+    "name": "Trashfin",
+    "color": "#FF5733",
+    "position": { "x": 1100, "y": 1250 },
+    "width": 64,
+    "height": 64,
+    "animations": {
+        "idle": {
+            "speed": 1,
+            "frames": [
+                "./assets/images/items/fish.png"
+            ]
+        }
+    },
+    "effect": [{
+        "execute": "interact",
+        "id": 0,
+        "done": [{
+            "execute": "dialog",
+            "id": 11
+        },
+        {
+            "execute": "item",
+            "id": 1
+        },
+        {
+            "execute": "state",
+            "id": 5,
+            "state": "hidden"
+        }],
+        "failed": [{
+            "execute": "dialog",
+            "id": 10
+        }]
+    }],
+    "state": "active" 
+}

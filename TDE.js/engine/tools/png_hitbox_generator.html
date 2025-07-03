@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PNG Hitbox Generator</title>
+    <link rel="stylesheet" href="../src/css/main.css">
+    <link rel="stylesheet" href="../src/css/png_hitbox_generator.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>PNG Hitbox Generator</h1>
+            <p>Convert PNG images to collision detection maps</p>
+        </div>
+        
+        <div class="content">
+            <div class="input-group">
+                <label for="fileInput">Select PNG Image</label>
+                <div class="file-input-wrapper">
+                    <input type="file" id="fileInput" class="file-input" accept="image/png">
+                    <div class="file-input-button">
+                        <span>📁</span>
+                        <span>Choose PNG File</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label for="colorInput">Hitbox Color</label>
+                <div class="color-input-wrapper">
+                    <input type="color" id="colorInput" class="color-input" value="#ff0000">
+                    <input type="text" id="colorText" class="color-text" value="#ff0000" placeholder="#ff0000">
+                </div>
+            </div>
+
+            <div class="output-section">
+                <div class="output-header">
+                    <h3>Generated JSON</h3>
+                    <button id="copyButton" class="copy-button">Copy to Clipboard</button>
+                </div>
+                <pre id="output" class="output"></pre>
+            </div>
+
+            <div class="info-box">
+                <p><strong>How it works:</strong> Upload a PNG image and select a color. The tool will scan each pixel and create a 2D array where 1 represents pixels matching your selected color (hitbox areas) and 0 represents transparent or other colored pixels.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="../src/js/png_hitbox_generator.js"></script>
+    <script src="../src/js/back.js"></script>
+</body>
+</html>
+

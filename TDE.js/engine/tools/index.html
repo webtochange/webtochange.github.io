@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Creation Tools</title>
+    <link rel="stylesheet" href="../src/css/main.css">
+    <link rel="stylesheet" href="../src/css/index.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Game Creation Tools</h1>
+            <p>Everything you need to create amazing 2D top-down games. Use these tools to streamline your development process and bring your game ideas to life.</p>
+        </div>
+
+        <div class="tools-grid">
+            <div class="tool-card">
+                <div class="tool-icon viewer-icon">👁️</div>
+                <h2 class="tool-title">Project Viewer</h2>
+                <p class="tool-description">Browse and analyze your game project data. View all actors, dialogues, items, maps, and props in an organized, searchable interface.</p>
+                <ul class="tool-features">
+                    <li>Interactive data browser</li>
+                    <li>Search and filter options</li>
+                    <li>Relationship visualization</li>
+                    <li>Data validation checks</li>
+                </ul>
+                <a href="project_viewer.html" class="tool-button">Open Project Viewer</a>
+            </div>
+
+            <div class="tool-card">
+                <div class="tool-icon game-icon">🎮</div>
+                <h2 class="tool-title">Play Game</h2>
+                <p class="tool-description">Test and play your created game directly in the browser. See how your changes affect the gameplay experience in real-time.</p>
+                <ul class="tool-features">
+                    <li>Instant game testing</li>
+                    <li>Mobile-responsive controls</li>
+                    <li>Debug information</li>
+                    <li>Performance monitoring</li>
+                </ul>
+                <a href="../game/start.html" class="tool-button" target="_blank">Play Game</a>
+            </div>
+
+            <div class="tool-card">
+                <div class="tool-icon docs-icon">📘</div>
+                <h2 class="tool-title">View Documentation</h2>
+                <p class="tool-description">
+                    Access detailed documentation about your project structure, game logic, file formats, and configuration options.
+                </p>
+                <ul class="tool-features">
+                    <li>File and data structure overview</li>
+                    <li>Effect and event reference</li>
+                    <li>Actor/item/dialog schema</li>
+                    <li>Usage examples and tips</li>
+                </ul>
+                <a href="../docs/index.html" class="tool-button">Open Documentation</a>
+            </div>
+
+            <div class="tool-card">
+                <div class="tool-icon json-icon">📝</div>
+                <h2 class="tool-title">JSON Position Converter</h2>
+                <p class="tool-description">
+                    Scale positions and sizes of elements in a JSON file based on the selected tile size. A perfect tool for automatically adjusting object positions and properties in game maps or levels.
+                </p>
+                <ul class="tool-features">
+                    <li>Dynamically multiply positions and sizes according to tile size</li>
+                    <li>Automatic modification of JSON structures</li>
+                    <li>Support for multiple objects within a single file</li>
+                    <li>Export the adjusted JSON file</li>
+                </ul>
+                <a href="json_converter.html" class="tool-button">Open JSON Position Converter</a>
+            </div>
+
+            <div class="tool-card">
+                <div class="tool-icon map-icon">🗺️</div>
+                <h2 class="tool-title">Map & Prop Editor</h2>
+                <p class="tool-description">Visual editor for placing and configuring props on your game maps. Drag and drop interface makes it easy to design your game world layouts.</p>
+                <ul class="tool-features">
+                    <li>Visual prop placement</li>
+                    <li>Grid-based positioning</li>
+                    <li>Real-time preview</li>
+                    <li>Export to JSON format</li>
+                </ul>
+                <a href="map_prop_editor.html" class="tool-button">Open Map Editor</a>
+            </div>
+
+            <div class="tool-card">
+                <div class="tool-icon hitbox-icon">💥</div>
+                <h2 class="tool-title">Hitbox Generator</h2>
+                <p class="tool-description">Automatically generate collision hitboxes from your PNG sprite images. Essential for proper collision detection in your game.</p>
+                <ul class="tool-features">
+                    <li>Auto-detect sprite boundaries</li>
+                    <li>Custom hitbox shapes</li>
+                    <li>Pixel-perfect precision</li>
+                    <li>Batch processing</li>
+                </ul>
+                <a href="png_hitbox_generator.html" class="tool-button">Open Hitbox Generator</a>
+            </div>
+        </div>
+
+        <div class="workflow-section">
+            <h2 class="workflow-title">Game Development Workflow</h2>
+            <div class="workflow-steps">
+                <div class="workflow-step">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Plan Your Game</h3>
+                    <p class="step-description">Design your story, characters, and world. Create a game design document outlining your vision.</p>
+                </div>
+                <div class="workflow-step">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Create Assets</h3>
+                    <p class="step-description">Design or gather sprites, backgrounds, and sound effects. Organize them in the assets folder structure.</p>
+                </div>
+                <div class="workflow-step">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Use Tools</h3>
+                    <p class="step-description">Utilize the provided tools to convert data, edit maps, and generate hitboxes efficiently.</p>
+                </div>
+                <div class="workflow-step">
+                    <div class="step-number">4</div>
+                    <h3 class="step-title">Test & Iterate</h3>
+                    <p class="step-description">Play your game, gather feedback, and refine the experience. Use the project viewer to analyze your data.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="resources-section">
+            <h2 class="resources-title">📚 Additional Resources</h2>
+            <div class="resources-grid">
+                <div class="resource-item">
+                    <h3 class="resource-title">Game Engine Documentation</h3>
+                    <p class="resource-description">Comprehensive guide covering all aspects of the 2D top-down game engine, including API references and best practices.</p>
+                </div>
+                <div class="resource-item">
+                    <h3 class="resource-title">Asset Guidelines</h3>
+                    <p class="resource-description">Learn about optimal image formats, sizing conventions, and organization patterns for your game assets.</p>
+                </div>
+                <div class="resource-item">
+                    <h3 class="resource-title">JSON Data Structure</h3>
+                    <p class="resource-description">Detailed explanation of the JSON schemas used for actors, dialogues, items, maps, and props in the game engine.</p>
+                </div>
+                <div class="resource-item">
+                    <h3 class="resource-title">Scripting Examples</h3>
+                    <p class="resource-description">Sample scripts and code snippets for common game mechanics like dialogue systems, inventory management, and scene transitions.</p>
+                </div>
+                <div class="resource-item">
+                    <h3 class="resource-title">Performance Optimization</h3>
+                    <p class="resource-description">Tips and techniques for optimizing your game's performance, including asset compression and efficient coding practices.</p>
+                </div>
+                <div class="resource-item">
+                    <h3 class="resource-title">Community Forum</h3>
+                    <p class="resource-description">Connect with other developers, share your creations, get help with technical issues, and collaborate on projects.</p>
+                </div>
+            </div>
+        </div>
+    </div> -->
+</body>
+</html>
+

@@ -1,0 +1,15 @@
+{
+    "text": "Coo coo! I sense greatness in you... or maybe corn. Either way — join the flock and become our Chicken King! Do you accept your destiny?",
+    "responses": [
+        {
+            "text": "Yes",
+            "effect": [{
+                "execute": "ending",
+                "id": 1
+            }]
+        },
+        {
+            "text": "Maybe later"
+        }
+    ]
+}
