@@ -789,7 +789,7 @@ function renderItems() {
         });
 
         const icon = document.createElement('img');
-        icon.src = item.icon;
+        icon.src = `../${item.icon}`;
         icon.alt = item.name;
         icon.style.width = '48px';
         icon.style.height = '48px';
