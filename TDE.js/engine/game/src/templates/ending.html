@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ending</title>
+</head>
+<body>
+  <script type="module">
+    import { ENDINGS_URL } from '../js/config.js';
+
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+
+    if (id) {
+      const script = document.createElement("script");
+      script.src = `../../../${ENDINGS_URL}${id}.js`;
+      document.body.appendChild(script);
+    } else {
+      document.body.innerText = "endings.html (template): No ID provided in URL.";
+    }
+  </script>
+</body>
+</html>

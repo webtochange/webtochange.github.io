@@ -1,0 +1,27 @@
+{
+    "text": "Ohh... I almost nodded off there. So, did you catch that annoying fish for me?",
+    "responses": [
+        {
+            "text": "Give the fish",
+            "effect": [{
+                "execute": "dialog",
+                "id": 3
+            },
+            {
+                "execute": "item",
+                "id": 2
+            },
+            {
+                "execute": "removeItem",
+                "id": 1
+            }],
+            "requirement": [{
+                "execute": "hasItem",
+                "id": 1
+            }]
+        },
+        {
+            "text": "Not yet"
+        }
+    ]
+}

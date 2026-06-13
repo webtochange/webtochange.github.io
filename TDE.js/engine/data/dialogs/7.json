@@ -1,0 +1,19 @@
+{
+    "text": "Ugh... I’m dying in this heat. My armor’s turning into a personal oven. So, do you have the drink for me?",
+    "responses": [
+        {
+            "text": "Give drink",
+            "effect": [{
+                "execute": "ending",
+                "id": 0
+            }],
+            "requirement": [{
+                "execute": "hasItem",
+                "id": 3
+            }]
+        },
+        {
+            "text": "Not yet, still looking"
+        }
+    ]
+}

@@ -1,0 +1,38 @@
+{
+    "text": "I’d do it myself, but... y’know, bones don’t swim. Go fish that loudmouth outta the lake, and I might pay you.",
+    "responses": [
+        {
+            "text": "I already have the fish",
+            "effect": [{
+                "execute": "dialog",
+                "id": 3
+            },
+            {
+                "execute": "item",
+                "id": 2
+            },
+            {
+                "execute": "removeItem",
+                "id": 1
+            }],
+            "requirement": [{
+                "execute": "hasItem",
+                "id": 1
+            }]
+        },
+        {
+            "text": "Okay",
+            "effect": [{
+                "execute": "changeActorEffect",
+                "id": 2,
+                "effect": [{
+                    "execute": "dialog",
+                    "id": 2
+                }]
+            }]
+        },
+        {
+            "text": "Maybe later"
+        }
+    ]
+}

@@ -1,0 +1,16 @@
+{
+    "text": "Ahhh, finally! Now I get some peace... and a chance to roast that fish properly. Here’s your coin.",
+    "responses": [
+        {
+            "text": "Thanks",
+            "effect": [{
+                "execute": "changeActorEffect",
+                "id": 2,
+                "effect": [{
+                    "execute": "dialog",
+                    "id": 4
+                }]
+            }]
+        }
+    ]
+}

@@ -1,0 +1,13 @@
+{
+    "id": 6,
+    "position": { "x": 1048, "y": 250 },
+    "width": 32,
+    "height": 48,
+    "effect": [{
+        "execute": "changeMap",
+        "id": 0,
+        "x": 420, 
+        "y": 550
+    }],
+    "state": "active" 
+}

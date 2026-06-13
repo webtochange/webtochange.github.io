@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CATaclysm</title>
+    
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/card.css">
+    <link rel="stylesheet" href="css/tooltip.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/base-bonuses.css">
+    <link rel="stylesheet" href="css/notifications.css">
+
+    <link rel="shortcut icon" href="img/cats/2.7.png" type="image/x-icon">
+</head>
+<body>
+    <!-- Pause Button -->
+    <button id="pauseBtn" class="pause-button">❚❚ PAUSE</button>
+    
+    <div class="container">
+        <!-- TOP PANEL -->
+        <div class="top-panel">
+            <div class="money-display"></div>
+        </div>
+
+        <!-- MAIN PANEL -->
+        <div class="main-panel">
+            <!-- Boss Section -->
+            <div class="boss-section">
+                <div class="boss-container">BOSS</div>
+                <div class="btn-group">
+                    <button id="openCardsBtn" class="btn">OPEN CARDS</button>
+                    <div style="display: flex; justify-content: space-between;">
+                        <button id="tutorialsBtn" class="btn" style="width: 49%;">TUTORIALS</button>
+                        <button id="tutorialsVideoBtn" class="btn" style="width: 49%;">VIDEO</button>
+                    </div>
+                    <button id="achievementsBtn" class="btn">ACHIEVEMENTS</button>
+                    <button id="settingsBtn" class="btn">SETTINGS</button>
+                    <button id="creditsBtn" class="btn">CREDITS</button>
+                </div>
+            </div>
+
+            <!-- Deck Section -->
+            <div class="deck-section">
+                <div class="cards-container">
+                    <div class="deck-slots">
+                        <!-- Deck slots will be generated here by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BOTTOM PANEL (Hidden by default, fixed position) -->
+    <div class="bottom-panel" id="bottomPanel">
+        <button class="bottom-panel-close" id="closePanelBtn">
+            <img src="img/icons/error.png" alt="Close" />
+        </button>
+        
+        <!-- Left Side - Base tabs -->
+        <div class="bottom-panel-left">
+            <div class="base-subtabs">
+                <button class="base-subtab active" data-subtab="upgrade">Base Upgrade</button>
+                <button class="base-subtab" data-subtab="clone">Card Cloning</button>
+            </div>
+            <div class="base-subtab-content active" id="upgrade-subtab"></div>
+            <div class="base-subtab-content" id="clone-subtab"></div>
+        </div>
+
+        <!-- Right Side - Always visible cards -->
+        <div class="bottom-panel-right">
+            <div class="unused-cards-with-filters-section">
+                <div class="cards-filter-section">
+                    <div class="card-filters">
+                        <button id="btnAll" class="filterBtn activeFilterBtn">ALL</button>
+                        <button id="btnSortDPS" class="filterBtn">CRIT DPS</button>
+                    </div>
+            
+                    <div class="card-filter-types"></div>
+            
+                    <div class="card-filter-rarity"></div>
+                </div>
+
+                <div class="unused-cards-section">
+                    <div class="unused-cards-title">Available Cards</div>
+                    <div class="unused-cards-grid" id="availableCardsGrid"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toggle Button for Bottom Panel -->
+    <button class="bottom-panel-toggle" id="togglePanelBtn">^</button>
+
+    <!-- Drag preview div -->
+    <div id="dragPreview"></div>
+
+    <script type="module" src="game.js"></script>
+</body>
+</html>
+

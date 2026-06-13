@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carkur</title>
+
+    
+
+    <!-- icon -->
+    <link rel="shortcut icon" href="cube.png" type="image/x-icon">
+
+    <!-- CSS material -->
+    <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+        
+    <!-- css -->
+        <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <canvas></canvas>
+    
+
+    <nav>
+
+        <p id="dash">DASH</p> 
+        <div id="dash-bar"><div id="progres"></div></div>
+
+        <p class="last-time">Last Time</p>
+
+        <button class="mdc-button mdc-button--outlined button-mode">
+            <span class="mdc-button__ripple"></span>
+            <span class="mdc-button__label">Mode</span>
+        </button>
+
+    </nav> 
+    
+
+
+
+    <div class="mdc-dialog dialog-win">
+        <div class="mdc-dialog__container">
+          <div class="mdc-dialog__surface"
+            role="alertdialog"
+            aria-modal="true"
+            aria-labelledby="my-dialog-title"
+            aria-describedby="my-dialog-content">
+            <div class="mdc-dialog__content" id="my-dialog-content">
+              You Win Your time: <p class="last-time"></p>
+            </div>
+          </div>
+        </div>
+        <div class="mdc-dialog__scrim"></div>
+      </div>
+
+      <div class="mdc-dialog dialog-mode">
+        <div class="mdc-dialog__container">
+          <div class="mdc-dialog__surface"
+            role="alertdialog"
+            aria-modal="true"
+            aria-labelledby="my-dialog-title"
+            aria-describedby="my-dialog-content">
+            <h2 class="mdc-dialog__title" id="my-dialog-title">
+                Mode Panel
+            </h2>
+            <form id="mode" class="form">
+                <div class="mdc-dialog__content" id="my-dialog-content">
+                    
+                        <table>
+                            <tr>
+                                <td colspan="2">
+                                    <label class="mdc-text-field mdc-text-field--outlined label-a">
+                                        <span class="mdc-notched-outline">
+                                            <span class="mdc-notched-outline__leading"></span>
+                                            <span class="mdc-notched-outline__notch">
+                                            <span class="mdc-floating-label" id="my-label-id">Level 1-6</span>
+                                            </span>
+                                            <span class="mdc-notched-outline__trailing"></span>
+                                        </span>
+                                        <input type="text" class="mdc-text-field__input" aria-labelledby="my-label-id" id="level" value="1">
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="mdc-text-field mdc-text-field--outlined label-a">
+                                        <span class="mdc-notched-outline">
+                                            <span class="mdc-notched-outline__leading"></span>
+                                            <span class="mdc-notched-outline__notch">
+                                            <span class="mdc-floating-label" id="my-label-id">Jump Height</span>
+                                            </span>
+                                            <span class="mdc-notched-outline__trailing"></span>
+                                        </span>
+                                        <input type="text" class="mdc-text-field__input" aria-labelledby="my-label-id" id="jump" value="1">
+                                    </label>
+                                </td>
+                                <td>
+                                    <label class="mdc-text-field mdc-text-field--outlined label-a">
+                                        <span class="mdc-notched-outline">
+                                            <span class="mdc-notched-outline__leading"></span>
+                                            <span class="mdc-notched-outline__notch">
+                                            <span class="mdc-floating-label" id="my-label-id">Speed</span>
+                                            </span>
+                                            <span class="mdc-notched-outline__trailing"></span>
+                                        </span>
+                                        <input type="text" class="mdc-text-field__input" aria-labelledby="my-label-id" id="speed" value="1">
+                                    </label>
+                                </td>
+                            </tr>
+                        </table>
+                    
+                </div>
+                <div class="mdc-dialog__actions">
+                <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="close">
+                    <div class="mdc-button__ripple"></div>
+                    <span class="mdc-button__label">Cancel</span>
+                </button>
+                <button type="submit" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="accept">
+                    <div class="mdc-button__ripple"></div>
+                    <span class="mdc-button__label">OK</span>
+                </button>
+                </div>
+            </form>
+          </div>
+        </div>
+        <div class="mdc-dialog__scrim"></div>
+      </div>
+
+
+    <!-- script material -->
+    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+
+    <script>
+
+        const dialogM = mdc.dialog.MDCDialog.attachTo(document.querySelector('.dialog-mode'));
+
+        const dialogW = mdc.dialog.MDCDialog.attachTo(document.querySelector('.dialog-win'));
+
+        var buttonM = document.querySelector('.button-mode');
+
+        //otwieranie mode menu
+        buttonM.addEventListener('click', function()
+        {
+            dialogM.open();
+
+            //refresh mode panel - level
+            document.querySelector('#level').value = level;
+        })
+
+        // przesowanie napisów do góry
+        const textFieldElements = [].slice.call(document.querySelectorAll('.mdc-text-field'));
+        textFieldElements.forEach((textFieldEl) => {
+            mdc.textField.MDCTextField.attachTo(textFieldEl);
+        });
+        
+    </script>
+
+    <!-- game script -->
+    <script src="variables.js"></script>
+    <script src="game.js"></script>
+    <script src="function.js"></script>
+    <script src="level.js"></script>
+    
+
+</body>
+</html>

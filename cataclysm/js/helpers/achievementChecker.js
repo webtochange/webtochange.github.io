@@ -1,0 +1,154 @@
+import { achievementsData } from '../data/achievementsData.js';
+import { gameState } from '../data/gameState.js';
+import { categoryProgress } from '../data/gameState.js';
+import { notifyAchievement } from '../ui/notifications.js';
+
+export function unlockAchievement(achievementId) {
+    if (gameState.unlockedAchievements.has(achievementId)) {
+        return false;
+    }
+    
+    gameState.unlockedAchievements.add(achievementId);
+    
+    const achievement = achievementsData.find(a => a.id === achievementId);
+    if (achievement) {
+        notifyAchievement(`Achievement unlocked: ${achievement.name}`);
+    }
+    
+    import('./saveManager.js').then(({ saveGame }) => {
+        saveGame();
+    });
+    
+    return true;
+}
+
+export function checkAllAchievements() {
+    achievementsData.forEach(achievement => {
+        if (!gameState.unlockedAchievements.has(achievement.id)) {
+            if (checkAchievement(achievement)) {
+                unlockAchievement(achievement.id);
+            }
+        }
+    });
+}
+
+export function checkAchievement(achievement) {
+    const req = achievement.requirements;
+    
+    switch (req.type) {
+        case 'all_slots_unlocked':
+            return gameState.unlockedSlots.every(slot => slot === true);
+        
+        case 'deck_rarity_count': {
+            const count = gameState.deckCards.filter(card => 
+                card && card.rarity === req.rarity
+            ).length;
+            return count >= req.count;
+        }
+        
+        case 'deck_specific_cards': {
+            const deckCardIds = gameState.deckCards
+                .filter(card => card !== null)
+                .map(card => card.id);
+            return req.cardIds.every(id => deckCardIds.includes(id));
+        }
+        
+        case 'deck_total_crit_dps': {
+            const totalCritDps = gameState.deckCards.reduce((sum, card) => {
+                if (!card) return sum;
+                return sum + (card.baseAttack * (card.baseCrit / 100));
+            }, 0);
+            return totalCritDps > req.minValue;
+        }
+        
+        case 'defeat_boss_category': {
+            const progress = categoryProgress[req.categoryId];
+            return progress && progress.completed === true;
+        }
+        
+        case 'max_card_rarity': {
+            return gameState.ownedCards.some(c => c.rarity === req.rarity && c.copies >= 62);
+        }
+        
+        case 'max_card_count': {
+            const maxedCount = gameState.ownedCards.filter(card => card.copies >= 62).length;
+            return maxedCount >= req.count;
+        }
+        case 'base_level': {
+            return gameState.currentBaseId >= req.level;
+        }
+        
+        default:
+            console.warn(`Unknown achievement type: ${req.type}`);
+            return false;
+    }
+}
+
+export function checkDeckAchievements() {
+    achievementsData
+        .filter(a => a.requirements.type.startsWith('deck_'))
+        .forEach(achievement => {
+            if (!gameState.unlockedAchievements.has(achievement.id)) {
+                if (checkAchievement(achievement)) {
+                    unlockAchievement(achievement.id);
+                }
+            }
+        });
+}
+
+export function checkSlotAchievements() {
+    const slotAchievements = achievementsData.filter(a => 
+        a.requirements.type === 'all_slots_unlocked'
+    );
+    
+    slotAchievements.forEach(achievement => {
+        if (!gameState.unlockedAchievements.has(achievement.id)) {
+            if (checkAchievement(achievement)) {
+                unlockAchievement(achievement.id);
+            }
+        }
+    });
+}
+
+export function checkBossAchievements() {
+    const bossAchievements = achievementsData.filter(a => 
+        a.requirements.type === 'defeat_boss_category'
+    );
+    
+    bossAchievements.forEach(achievement => {
+        if (!gameState.unlockedAchievements.has(achievement.id)) {
+            if (checkAchievement(achievement)) {
+                unlockAchievement(achievement.id);
+            }
+        }
+    });
+}
+
+export function checkMaxCardAchievements() {
+    const maxCardAchievements = achievementsData.filter(a => 
+        a.requirements.type === 'max_card_count' || 
+        a.requirements.type === 'max_card_rarity'
+    );
+    
+    maxCardAchievements.forEach(achievement => {
+        if (!gameState.unlockedAchievements.has(achievement.id)) {
+            if (checkAchievement(achievement)) {
+                unlockAchievement(achievement.id);
+            }
+        }
+    });
+}
+
+export function checkBaseAchievements() {
+    const baseAchievements = achievementsData.filter(a => 
+        a.requirements.type === 'base_level'
+    );
+    
+    baseAchievements.forEach(achievement => {
+        if (!gameState.unlockedAchievements.has(achievement.id)) {
+            if (checkAchievement(achievement)) {
+                unlockAchievement(achievement.id);
+            }
+        }
+    });
+}

@@ -1,0 +1,24 @@
+{
+    "id": 1,
+    "name": "Major Sunflower",
+    "color": "#7d7d7d",
+    "position": { "x": 300, "y": 625 },
+    "width": 63,
+    "height": 87,
+    "animations": {
+        "idle": {
+            "speed": 0.3,
+            "frames": [
+                "./assets/images/actors/0/0.png",
+                "./assets/images/actors/0/1.png",
+                "./assets/images/actors/0/2.png",
+                "./assets/images/actors/0/3.png"
+            ]
+        }
+    },
+    "effect": [{
+        "execute": "dialog",
+        "id": 6
+    }],
+    "state": "active" 
+}

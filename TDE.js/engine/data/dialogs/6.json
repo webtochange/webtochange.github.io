@@ -1,0 +1,30 @@
+{
+    "text": "Blazing sun, boiling armor... bring me a drink, and I’ll get you through this cursed forest.",
+    "responses": [
+        {
+            "text": "Give drink",
+            "effect": [{
+                "execute": "ending",
+                "id": 0
+            }],
+            "requirement": [{
+                "execute": "hasItem",
+                "id": 3
+            }]
+        },
+        {
+            "text": "I’ll look around for it",
+            "effect": [{
+                "execute": "changeActorEffect",
+                "id": 1,
+                "effect": [{
+                    "execute": "dialog",
+                    "id": 7
+                }]
+            }]
+        },
+        {
+            "text": "Maybe I’ll look for it later"
+        }
+    ]
+}
